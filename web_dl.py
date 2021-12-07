@@ -52,7 +52,9 @@ class urlDownloader(object):
                 filename = re.sub('\W+', '.', os.path.basename(res[inner]))
                 # print("> filename:", filename)
                 # Added the '.html' for the html file in the href
-                if tag2find == 'link' and (not any(ext in filename for ext in self.linkType)):
+                if tag2find == 'link' and all(
+                    ext not in filename for ext in self.linkType
+                ):
                     filename += '.html'
                 fileurl = urljoin(url, res.get(inner))
                 filepath = os.path.join(pagefolder, filename)
