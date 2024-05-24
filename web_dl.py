@@ -49,7 +49,7 @@ class urlDownloader(object):
             try:
                 if not res.has_attr(inner): continue # check if inner tag (file object) exists
                 # clean special chars such as '@, # ? <>'
-                filename = re.sub('\W+', '.', os.path.basename(res[inner]))
+                filename = re.sub(r'\W+', '.', os.path.basename(res[inner]))
                 # print("> filename:", filename)
                 # Added the '.html' for the html file in the href
                 if tag2find == 'link' and (not any(ext in filename for ext in self.linkType)):
